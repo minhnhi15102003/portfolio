@@ -62,8 +62,9 @@ const Scene = () => {
           let character = gltf.scene;
           setChar(character);
           scene.add(character);
-          headBone = character.getObjectByName("spine006") || null;
+          headBone = character.getObjectByName("spine006") || character.getObjectByName("headPivot") || null;
           screenLight = character.getObjectByName("screenlight") || null;
+
           progress.loaded().then(() => {
             setTimeout(() => {
               light.turnOnLights();
@@ -109,6 +110,7 @@ const Scene = () => {
       }
       const animate = () => {
         requestAnimationFrame(animate);
+
         if (headBone) {
           handleHeadRotation(
             headBone,
@@ -120,6 +122,7 @@ const Scene = () => {
           );
           light.setPointLight(screenLight);
         }
+
         const delta = clock.getDelta();
         if (mixer) {
           mixer.update(delta);

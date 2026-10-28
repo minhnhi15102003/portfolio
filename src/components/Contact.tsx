@@ -68,40 +68,19 @@ const Contact = () => {
                 {config.contact.email}
               </a>
             </p>
+            <h4>Phone / Zalo</h4>
+            <p>
+              <a href={config.contact.zalo} target="_blank" rel="noopener noreferrer" data-cursor="disable">
+                {config.contact.phone}
+              </a>
+            </p>
             <h4>Location</h4>
             <p>
-              <span>{config.social.location}</span>
+              <span>{config.contact.location}</span>
             </p>
           </div>
           <div className="contact-box">
-            <h4>Social</h4>
-            <a
-              href={config.contact.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Github <MdArrowOutward />
-            </a>
-            <a
-              href={config.contact.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Linkedin <MdArrowOutward />
-            </a>
-            <a
-              href={config.contact.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Twitter <MdArrowOutward />
-            </a>
+            <h4>Featured Links</h4>
             <a
               href={config.contact.facebook}
               target="_blank"
@@ -120,13 +99,22 @@ const Contact = () => {
             >
               Instagram <MdArrowOutward />
             </a>
+            <a
+              href={config.contact.zalo}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="disable"
+              className="contact-social"
+            >
+              Zalo Chat ({config.contact.phone}) <MdArrowOutward />
+            </a>
           </div>
           <div className="contact-box">
             <h2>
-              Designed and Developed <br /> by <span>{config.developer.fullName}</span>
+              Portfolio & Visual Showcase <br /> by <span>{config.developer.fullName}</span>
             </h2>
             <h5>
-              <MdCopyright /> {new Date().getFullYear()}
+              <MdCopyright /> {new Date().getFullYear()} • Video Editor & Multimedia
             </h5>
           </div>
         </div>

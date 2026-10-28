@@ -1,9 +1,9 @@
 import {
-  FaGithub,
+  FaFacebook,
   FaInstagram,
-  FaLinkedinIn,
-  FaXTwitter,
+  FaEnvelope,
 } from "react-icons/fa6";
+import { SiZalo } from "react-icons/si";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
@@ -61,27 +61,50 @@ const SocialIcons = () => {
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          <a href={config.contact.github} target="_blank" rel="noopener noreferrer">
-            <FaGithub />
+          <a
+            href={config.social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Facebook"
+          >
+            <FaFacebook />
           </a>
         </span>
         <span>
-          <a href={config.contact.linkedin} target="_blank" rel="noopener noreferrer">
-            <FaLinkedinIn />
-          </a>
-        </span>
-        <span>
-          <a href={config.contact.twitter} target="_blank" rel="noopener noreferrer">
-            <FaXTwitter />
-          </a>
-        </span>
-        <span>
-          <a href={config.contact.instagram} target="_blank" rel="noopener noreferrer">
+          <a
+            href={config.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Instagram"
+          >
             <FaInstagram />
           </a>
         </span>
+        <span>
+          <a
+            href={config.social.zalo}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Zalo"
+          >
+            <SiZalo />
+          </a>
+        </span>
+        <span>
+          <a
+            href={`mailto:${config.social.email}`}
+            title="Email"
+          >
+            <FaEnvelope />
+          </a>
+        </span>
       </div>
-      <a className="resume-button" href="#">
+      <a
+        className="resume-button"
+        href="/NguyenAnhMinh_CV_Editor.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />
