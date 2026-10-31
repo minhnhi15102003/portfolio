@@ -31,3 +31,12 @@ redoxchess-engine/
 
 public/models/character_original.glb
 model 3d*.glb
+character_fixed.glb
+public/models/character_fixed.glb
+*.jpg
+*.png
+*.bin
+setup_avatar_pro.py
+super_fix_materials.py
+fix_color_blender.py
+__pycache__/
