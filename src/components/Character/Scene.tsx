@@ -125,7 +125,7 @@ const Scene = () => {
           const innerModel = character.children[0];
           innerModel.rotation.y = THREE.MathUtils.lerp(
             innerModel.rotation.y,
-            mouse.x * 0.15,
+            -Math.PI / 2 + mouse.x * 0.15,
             interpolation.x
           );
           innerModel.rotation.x = THREE.MathUtils.lerp(

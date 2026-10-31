@@ -35,6 +35,11 @@ const setCharacter = (
             // Center and position the character model at the optimal viewing height
             character.position.set(0, 12.6, 0);
 
+            // Orient model to face directly forward towards the camera
+            if (character.children.length > 0) {
+              character.children[0].rotation.y = -Math.PI / 2;
+            }
+
             await renderer.compileAsync(character, camera, scene);
             character.traverse((child: any) => {
               if (child.isMesh) {
