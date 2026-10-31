@@ -27,13 +27,13 @@ const setCharacter = (
             const box = new THREE.Box3().setFromObject(character);
             const size = new THREE.Vector3();
             box.getSize(size);
-            const targetHeight = 5.2;
+            const targetHeight = 3.8;
             const currentHeight = size.y || 1;
             const scale = targetHeight / currentHeight;
             character.scale.set(scale, scale, scale);
 
-            // Center and position the character model at the desk focus point
-            character.position.set(0, 9.55, -0.36);
+            // Center and position the character model at the optimal viewing height
+            character.position.set(0, 12.3, 0);
 
             await renderer.compileAsync(character, camera, scene);
             character.traverse((child: any) => {
