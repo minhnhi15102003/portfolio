@@ -121,6 +121,18 @@ const Scene = () => {
             THREE.MathUtils.lerp
           );
           light.setPointLight(screenLight);
+        } else if (character && character.children.length > 0) {
+          const innerModel = character.children[0];
+          innerModel.rotation.y = THREE.MathUtils.lerp(
+            innerModel.rotation.y,
+            mouse.x * 0.15,
+            interpolation.x
+          );
+          innerModel.rotation.x = THREE.MathUtils.lerp(
+            innerModel.rotation.x,
+            mouse.y * 0.08,
+            interpolation.y
+          );
         }
 
         const delta = clock.getDelta();

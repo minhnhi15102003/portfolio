@@ -18,6 +18,11 @@ const setLighting = (scene: THREE.Scene) => {
   pointLight.castShadow = true;
   scene.add(pointLight);
 
+  // Soft key light from front-top for model illumination
+  const keyLight = new THREE.DirectionalLight(0xfff5ea, 0);
+  keyLight.position.set(3, 15, 12);
+  scene.add(keyLight);
+
   // Soft ambient fill light for character clarity
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
   scene.add(ambientLight);
@@ -48,6 +53,11 @@ const setLighting = (scene: THREE.Scene) => {
     });
     gsap.to(directionalLight, {
       intensity: 1,
+      duration: duration,
+      ease: ease,
+    });
+    gsap.to(keyLight, {
+      intensity: 1.2,
       duration: duration,
       ease: ease,
     });

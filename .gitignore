@@ -27,3 +27,7 @@ dist-ssr
 backup/
 .env
 redoxchess-engine/
+.vercel
+
+public/models/character_original.glb
+model 3d*.glb
