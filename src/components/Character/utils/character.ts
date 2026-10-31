@@ -27,13 +27,13 @@ const setCharacter = (
             const box = new THREE.Box3().setFromObject(character);
             const size = new THREE.Vector3();
             box.getSize(size);
-            const targetHeight = 3.8;
+            const targetHeight = 5.2;
             const currentHeight = size.y || 1;
             const scale = targetHeight / currentHeight;
             character.scale.set(scale, scale, scale);
 
             // Center and position the character model at the optimal viewing height
-            character.position.set(0, 12.3, 0);
+            character.position.set(0, 12.6, 0);
 
             await renderer.compileAsync(character, camera, scene);
             character.traverse((child: any) => {
@@ -43,8 +43,12 @@ const setCharacter = (
                 child.receiveShadow = true;
                 mesh.frustumCulled = true;
                 if (mesh.material && !Array.isArray(mesh.material)) {
-                  (mesh.material as THREE.MeshStandardMaterial).precision = "mediump";
-                  (mesh.material as THREE.MeshStandardMaterial).needsUpdate = true;
+                  const mat = mesh.material as THREE.MeshStandardMaterial;
+                  mat.precision = "mediump";
+                  mat.roughness = 0.55;
+                  mat.metalness = 0.1;
+                  mat.envMapIntensity = 1.2;
+                  mat.needsUpdate = true;
                 }
               }
             });

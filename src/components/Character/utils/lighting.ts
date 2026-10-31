@@ -3,28 +3,28 @@ import { RGBELoader } from "three-stdlib";
 import { gsap } from "gsap";
 
 const setLighting = (scene: THREE.Scene) => {
-  const directionalLight = new THREE.DirectionalLight(0xc7a9ff, 0);
-  directionalLight.intensity = 0;
-  directionalLight.position.set(-0.47, -0.32, -1);
-  directionalLight.castShadow = true;
-  directionalLight.shadow.mapSize.width = 1024;
-  directionalLight.shadow.mapSize.height = 1024;
-  directionalLight.shadow.camera.near = 0.5;
-  directionalLight.shadow.camera.far = 50;
+  // Main front key light to illuminate character face and body vividly
+  const frontKeyLight = new THREE.DirectionalLight(0xfff8f0, 2.2);
+  frontKeyLight.position.set(0, 14, 20);
+  frontKeyLight.castShadow = true;
+  scene.add(frontKeyLight);
+
+  // Soft fill light from the left side
+  const fillLight = new THREE.DirectionalLight(0xddd0ff, 1.4);
+  fillLight.position.set(-6, 12, 10);
+  scene.add(fillLight);
+
+  // Rim back light for sleek edge highlights
+  const directionalLight = new THREE.DirectionalLight(0xc7a9ff, 1.8);
+  directionalLight.position.set(4, 15, -6);
   scene.add(directionalLight);
 
   const pointLight = new THREE.PointLight(0xc2a4ff, 0, 100, 3);
   pointLight.position.set(3, 12, 4);
-  pointLight.castShadow = true;
   scene.add(pointLight);
 
-  // Soft key light from front-top for model illumination
-  const keyLight = new THREE.DirectionalLight(0xfff5ea, 0);
-  keyLight.position.set(3, 15, 12);
-  scene.add(keyLight);
-
-  // Soft ambient fill light for character clarity
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+  // Ambient fill light so shadows are never pitch black
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
   scene.add(ambientLight);
 
   new RGBELoader()
@@ -32,7 +32,7 @@ const setLighting = (scene: THREE.Scene) => {
     .load("char_enviorment.hdr", function (texture) {
       texture.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = texture;
-      scene.environmentIntensity = 0;
+      scene.environmentIntensity = 0.8;
       scene.environmentRotation.set(5.76, 85.85, 1);
     });
 
@@ -43,21 +43,22 @@ const setLighting = (scene: THREE.Scene) => {
       pointLight.intensity = 0;
     }
   }
-  const duration = 2;
+
+  const duration = 1.5;
   const ease = "power2.inOut";
   function turnOnLights() {
     gsap.to(scene, {
-      environmentIntensity: 0.64,
+      environmentIntensity: 1.0,
+      duration: duration,
+      ease: ease,
+    });
+    gsap.to(frontKeyLight, {
+      intensity: 2.5,
       duration: duration,
       ease: ease,
     });
     gsap.to(directionalLight, {
-      intensity: 1,
-      duration: duration,
-      ease: ease,
-    });
-    gsap.to(keyLight, {
-      intensity: 1.2,
+      intensity: 2.0,
       duration: duration,
       ease: ease,
     });
@@ -73,3 +74,4 @@ const setLighting = (scene: THREE.Scene) => {
 };
 
 export default setLighting;
+
